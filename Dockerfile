@@ -3,8 +3,11 @@ MAINTAINER Frank Wang "eternnoir@gmail.com"
 
 RUN apt-get update && apt-get install -y openjdk-7-jre-headless wget
 RUN apt-get clean
-RUN wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz | tar -xzf - -C /opt \
-        && mv /opt/zookeeper-3.4.6 /opt/zookeeper \
+
+ENV VERSION 3.4.6
+
+RUN wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-$VERSION/zookeeper-$VERSION.tar.gz | tar -xzf - -C /opt \
+        && mv /opt/zookeeper-$VERSION /opt/zookeeper \
         && cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg \
         && mkdir -p /tmp/zookeeper
 
